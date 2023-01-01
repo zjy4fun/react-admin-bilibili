@@ -1,10 +1,12 @@
-import Comp1 from "./components/Comp1"
-import Comp2 from "./components/Comp2"
+import { UpOutlined } from "@ant-design/icons"
+import { Button } from "antd"
+
+
 function App() {
   return (
     <div className="App">
-      <Comp1 />
-      <Comp2 />
+      <Button type="primary">我们的按钮</Button>
+      <UpOutlined style={{fontSize: '40px',color:'red'}}/>
     </div>
   )
 }
