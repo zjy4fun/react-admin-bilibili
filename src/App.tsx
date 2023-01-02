@@ -1,12 +1,12 @@
 import { UpOutlined } from "@ant-design/icons"
 import { Button } from "antd"
+import { Outlet } from "react-router-dom" //占位符组件，类似于Vue中的router-view
 
 
 function App() {
   return (
     <div className="App">
-      <Button type="primary">我们的按钮</Button>
-      <UpOutlined style={{fontSize: '40px',color:'red'}}/>
+      <Outlet></Outlet>
     </div>
   )
 }
