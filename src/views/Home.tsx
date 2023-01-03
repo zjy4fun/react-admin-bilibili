@@ -47,18 +47,28 @@ const View: React.FC = () => {
     } = theme.useToken();
     const navigateTo = useNavigate()
 
-    const menuClick = (e: {key: string}) => {
+    const menuClick = (e: { key: string }) => {
         console.log("点击了菜单", e.key);
-        
+
         //点击跳转对应的路由，编程式导航跳转，利用到一个 hook
         navigateTo(e.key);
+    }
+    const handleOpenChange = (keys: string[]) => {
+        console.log(keys)//keys记录了哪个菜单被展开
     }
     return (
         <Layout style={{ minHeight: '100vh' }}>
             {/* 左边的侧边栏 */}
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-                <Menu theme="dark" defaultSelectedKeys={['page1']} mode="inline" items={items} onClick={menuClick} />
+                <Menu
+                    theme="dark"
+                    defaultSelectedKeys={['page1']}
+                    mode="inline"
+                    items={items}
+                    onClick={menuClick} 
+                    onOpenChange={handleOpenChange}
+                    />
             </Sider>
             {/* 右边内容 */}
             <Layout className="site-layout">
