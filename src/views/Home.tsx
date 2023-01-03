@@ -58,7 +58,7 @@ const View: React.FC = () => {
             {/* 左边的侧边栏 */}
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={menuClick} />
+                <Menu theme="dark" defaultSelectedKeys={['page1']} mode="inline" items={items} onClick={menuClick} />
             </Sider>
             {/* 右边内容 */}
             <Layout className="site-layout">
