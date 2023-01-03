@@ -1,7 +1,7 @@
 function View(){
     return (
         <div>
-            <p>这是Home的内容</p>
+            <p>这是About的内容</p>
         </div>
     )
 }
