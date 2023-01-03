@@ -8,6 +8,12 @@ import { Navigate } from "react-router-dom" //重定向组件
 
 //懒加载模式需要我们添加一个 Loading 组件
 
+const withLoadingComponent = (comp:JSX.Element) => (
+    <React.Suspense fallback={<div>Loading</div>} >
+        {comp}
+    </React.Suspense>
+)
+
 const routes = [
     {
         path: "/",
@@ -19,17 +25,11 @@ const routes = [
     },
     {
         path: "/about",
-        element: 
-        <React.Suspense fallback={<div>Loading</div>} >
-            <About />
-        </React.Suspense>
+        element: withLoadingComponent(<About />)
     },
     {
         path: "/user",
-        element: 
-        <React.Suspense fallback={<div>Loading</div>} >
-            <User />
-        </React.Suspense>
+        element: withLoadingComponent(<User />)
     }
 ]
 
