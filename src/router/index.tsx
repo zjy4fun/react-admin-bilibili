@@ -1,20 +1,20 @@
-import App from '../App'
 import Home from '../views/Home'
 import About from '../views/About'
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import {Navigate} from "react-router-dom" //重定向组件
 
-function baseRouter() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<App />}>
-                    <Route path='/' element={<Navigate to="/home"/>}></Route>
-                    <Route path="/home" element={<Home />}></Route>
-                    <Route path="/about" element={<About />}></Route>
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    )
-}
+const routes = [
+    {
+        path: "/",
+        element: <Navigate to="/home"/>
+    },
+    {
+        path: "/home",
+        element: <Home />
+    },
+    {
+        path: "/about",
+        element: <About />
+    }
+]
 
-export default baseRouter
+export default routes;
