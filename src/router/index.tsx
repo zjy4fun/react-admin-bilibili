@@ -4,32 +4,37 @@ import Home from '../views/Home'
 // import User from '../views/User'
 const About = lazy(() => import('../views/About'))
 const User = lazy(() => import('../views/User'))
+const Page1 = lazy(() => import('../views/Page1'))
+const Page2 = lazy(() => import('../views/Page2'))
 import { Navigate } from "react-router-dom" //重定向组件
 
 //懒加载模式需要我们添加一个 Loading 组件
 
-const withLoadingComponent = (comp:JSX.Element) => (
+const withLoadingComponent = (comp: JSX.Element) => (
     <React.Suspense fallback={<div>Loading</div>} >
         {comp}
     </React.Suspense>
 )
 
 const routes = [
+    // 嵌套路由
     {
         path: "/",
-        element: <Navigate to="/home" />
+        element: <Navigate to="/page1" />
     },
     {
-        path: "/home",
-        element: <Home />
-    },
-    {
-        path: "/about",
-        element: withLoadingComponent(<About />)
-    },
-    {
-        path: "/user",
-        element: withLoadingComponent(<User />)
+        path: '/',
+        element: <Home />,
+        children: [
+            {
+                path: "/page1",
+                element: withLoadingComponent(<Page1 />)
+            },
+            {
+                path: "/page2",
+                element: withLoadingComponent(<Page2 />)
+            }
+        ]
     }
 ]
 

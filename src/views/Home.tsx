@@ -8,6 +8,7 @@ import {
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -28,8 +29,8 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
+    getItem('Option 1', 'page1', <PieChartOutlined />),
+    getItem('Option 2', 'page2', <DesktopOutlined />),
     getItem('User', 'sub1', <UserOutlined />, [
         getItem('Tom', '3'),
         getItem('Bill', '4'),
@@ -44,13 +45,20 @@ const View: React.FC = () => {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
+    const navigateTo = useNavigate()
 
+    const menuClick = (e: {key: string}) => {
+        console.log("点击了菜单", e.key);
+        
+        //点击跳转对应的路由，编程式导航跳转，利用到一个 hook
+        navigateTo(e.key);
+    }
     return (
         <Layout style={{ minHeight: '100vh' }}>
             {/* 左边的侧边栏 */}
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={menuClick} />
             </Sider>
             {/* 右边内容 */}
             <Layout className="site-layout">
@@ -65,6 +73,7 @@ const View: React.FC = () => {
                 {/* 右边内容：白色底的盒子 */}
                 <Content style={{ margin: '16px 16px 0' }}>
                     {/* 窗口部分放在这里 */}
+                    <Outlet></Outlet>
                 </Content>
                 {/* 右边底部 */}
                 <Footer style={{ textAlign: 'center', padding: 0, lineHeight: '48px' }}>Ant Design ©2018 Created by Ant UED</Footer>
